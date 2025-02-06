@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interessenabwägung zur Prüfung einreichen{% endblock %}
+
+{% block body %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Interessenabwägung zur Prüfung einreichen</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Interessenabwägung zur Prüfung einreichen</h3>
+                </div>
+                <div class="card-body">
+                    <p>Möchten Sie die folgende Interessenabwägung zur Prüfung einreichen?</p>
+                    <dl class="row">
+                        <dt class="col-sm-3">Titel</dt>
+                        <dd class="col-sm-9">{{ assessment.title }}</dd>
+
+                        <dt class="col-sm-3">Abteilung</dt>
+                        <dd class="col-sm-9">{{ assessment.department }}</dd>
+                    </dl>
+                </div>
+                <div class="card-footer">
+                    <form method="POST">
+                        <button type="submit" class="btn btn-primary">Prüfung starten</button>
+                        <a href="{{ path('app_interest_assessment_index') }}" class="btn btn-secondary">Abbrechen</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
