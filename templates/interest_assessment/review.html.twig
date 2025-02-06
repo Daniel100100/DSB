@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interessenabwägung prüfen{% endblock %}
+
+{% block body %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Prüfung der Interessenabwägung</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title">Details der Interessenabwägung</h3>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Titel</dt>
+                        <dd class="col-sm-9">{{ assessment.title }}</dd>
+
+                        <dt class="col-sm-3">Bereich</dt>
+                        <dd class="col-sm-9">{{ assessment.department }}</dd>
+
+                        <dt class="col-sm-3">Zweck</dt>
+                        <dd class="col-sm-9">{{ assessment.processingPurpose }}</dd>
+
+                        <dt class="col-sm-3">Status</dt>
+                        <dd class="col-sm-9">
+                            {% if assessment.status == 'geprüft' %}
+                                <span class="badge badge-success">Geprüft</span>
+                            {% elseif assessment.status == 'in Prüfung' %}
+                                <span class="badge badge-warning">In Prüfung</span>
+                            {% else %}
+                                <span class="badge badge-secondary">Nicht geprüft</span>
+                            {% endif %}
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header bg-secondary text-white">
+                    <h3 class="card-title">Prüfung durchführen</h3>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.entscheidung, 'Entscheidung') }}
+                        <div class="form-check">
+                            {{ form_widget(form.entscheidung, { 'attr': {'class': 'form-check-input'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.bemerkung, 'Bemerkung') }}
+                        {{ form_widget(form.bemerkung, { 'attr': {'class': 'form-control', 'rows': 4} }) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-check"></i> Entscheidung speichern
+                    </button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll('.start-review').forEach(button => {
+                    button.addEventListener('click', async function() {
+                        const assessmentId = this.dataset.id;
+
+                        if (!confirm("Möchten Sie diese Interessenabwägung zur Prüfung einreichen?")) {
+                            return;
+                        }
+
+                        try {
+                            const response = await fetch(`/interessenabwaegung/${assessmentId}/start-review`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                }
+                            });
+
+                            const data = await response.json();
+
+                            if (data.success) {
+                                location.reload();
+                            } else {
+                                alert("Fehler: " + data.error);
+                            }
+                        } catch (error) {
+                            alert("Ein Fehler ist aufgetreten.");
+                            console.error(error);
+                        }
+                    });
+                });
+            });
+        </script>
+        {% endblock %}
+

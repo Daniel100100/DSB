@@ -1,0 +1,11 @@
+{# templates/interest_assessment/rejection_email.html.twig #}
+<h2>Ihre Interessenabwägung wurde abgelehnt</h2>
+
+<p>Die Interessenabwägung "{{ assessment.title }}" wurde vom DSB abgelehnt.</p>
+
+<p>Begründung:</p>
+<blockquote>{{ comment }}</blockquote>
+
+<p>
+    <a href="{{ reviewUrl }}">Klicken Sie hier um die Interessenabwägung zu bearbeiten</a>
+</p>
