@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mandant erforderlich - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Mandant erforderlich</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="alert alert-warning">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h5><i class="icon fas fa-exclamation-triangle"></i> Hinweis</h5>
+                        <p class="mb-0">Um eine neue Interessenabwägung zu erstellen, benötigen Sie einen aktiven Mandanten.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Nächste Schritte</h5>
+                    <p class="card-text">Bevor Sie Interessenabwägungen erstellen können, müssen Sie:</p>
+                    <ol>
+                        <li>Einen Mandanten anlegen</li>
+                        <li>Die grundlegenden Informationen des Mandanten ausfüllen</li>
+                        <li>Zur Interessenabwägung zurückkehren</li>
+                    </ol>
+                    <div class="mt-4">
+                        <a href="{{ createMandantUrl }}" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Mandanten jetzt anlegen
+                        </a>
+                        <a href="{{ path('app_interest_assessment_index') }}" class="btn btn-outline-secondary ml-2">
+                            <i class="fas fa-arrow-left"></i> Zurück zur Übersicht
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
