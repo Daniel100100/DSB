@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+    <h1>Welcome, Admin!</h1>
+    <p>Currently logged in as: {{ user.email }}</p>
+    <p>Total Users: {{ total_users }}</p>
+{% endblock %}

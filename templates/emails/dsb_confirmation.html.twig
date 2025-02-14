@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DSB Bestellung Bestätigung</title>
+</head>
+<body>
+<h2>DSB Bestellung Bestätigung</h2>
+
+<p>Sie wurden als Datenschutzbeauftragter für {{ mandant.unternehmensname }} bestellt.</p>
+
+<h3>Unternehmensinformationen:</h3>
+<ul>
+    <li>Unternehmen: {{ mandant.unternehmensname }}</li>
+    <li>Ansprechpartner: {{ mandant.ansprechpartner }}</li>
+    <li>E-Mail: {{ mandant.email }}</li>
+    <li>Adresse: {{ mandant.strasse1 }}, {{ mandant.plz }} {{ mandant.ort }}</li>
+</ul>
+
+<p>Als DSB haben Sie Zugriff auf die Datenschutz-Verwaltung des Unternehmens.</p>
+
+<p>Mit freundlichen Grüßen<br>
+    Ihr DSB-System</p>
+</body>
+</html>

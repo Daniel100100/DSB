@@ -1,0 +1,32 @@
+{# templates/emails/review_request.html.twig #}
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Neue Interessenabwägung zur Prüfung</h2>
+<p>Eine neue Interessenabwägung wurde zur Prüfung eingereicht:</p>
+<ul>
+    <li>Titel: {{ assessment.title }}</li>
+    <li>Bereich: {{ assessment.department }}</li>
+    <li>Zweck: {{ assessment.processingPurpose }}</li>
+</ul>
+<p>
+    <a href="{{ deepLink }}">Klicken Sie hier um die Prüfung durchzuführen</a>
+</p>
+</body>
+</html>
+
+{# templates/emails/review_rejected.html.twig #}
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Interessenabwägung wurde abgelehnt</h2>
+<p>Ihre Interessenabwägung "{{ assessment.title }}" wurde abgelehnt.</p>
+
+<h3>Begründung:</h3>
+<p>{{ comment }}</p>
+
+<p>
+    <a href="{{ deepLink }}">Klicken Sie hier um die Interessenabwägung zu bearbeiten</a>
+</p>
+</body>
+</html>
